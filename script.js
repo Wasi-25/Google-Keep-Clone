@@ -16,11 +16,12 @@ const addNewNote = (text='')=>{
 
     const htmlData = `        
     <div class="operation">
-    <button class="edit"><i class="fas fa-edit"></i></button>
-    <button class="delete"><i class="fas fa-trash-alt"></i></button>
+        <button class="edit"><i class="fas fa-edit"></i></button>
+        <button class="delete"><i class="fas fa-trash-alt"></i></button>
     </div>
-    <div class="main ${text ? "" : "hidden"}"></div>
-    <textarea class="${text ? "hidden" : ""}"></textarea>`;
+
+    <div class="main ${text ? "" : "hidden"}"> </div>
+    <textarea class="${text ? "hidden" : ""}"></textarea> `;
 
     note.insertAdjacentHTML('afterbegin',htmlData);
 
@@ -34,6 +35,7 @@ const addNewNote = (text='')=>{
     // deleting the note
     delButton.addEventListener('click',()=>{
         note.remove();
+        updateLSData();
     });
 
     // toggle using edit button
@@ -46,14 +48,10 @@ const addNewNote = (text='')=>{
     });
     textArea.addEventListener('change',(event)=>{
         const value = event.target.value;
-        mainDiv.innerHTML=value;
-
+        mainDiv.innerHTML=value; 
         updateLSData();
         document.body.appendChild(note);
     });
-
-
-
     document.body.appendChild(note);
 
 }
